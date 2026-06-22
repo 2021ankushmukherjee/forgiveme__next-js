@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+:root {
+  --background: #132526;
+  --foreground: #fffaf1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-width: 320px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+.heart {
+  position: absolute;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  rotate: -45deg;
+  border-radius: 7px;
+  background: rgba(255, 211, 219, 0.86);
+  filter: drop-shadow(0 14px 20px rgba(85, 18, 35, 0.32));
+  animation: float-heart 8s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  content: "";
+  border-radius: 999px;
+  background: inherit;
+}
+
+.heart::before {
+  top: -17px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 17px;
+}
+
+.heart-one {
+  top: 16%;
+  left: 8%;
+}
+
+.heart-two {
+  right: 9%;
+  bottom: 18%;
+  scale: 0.78;
+  animation-delay: -2s;
+}
+
+.heart-three {
+  top: 13%;
+  right: 18%;
+  scale: 0.58;
+  animation-delay: -4s;
+}
+
+.accepted-celebration {
+  animation: pop-in 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.site-emoji-burst {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+}
+
+.site-flying-emoji {
+  position: fixed;
+  top: calc(100dvh - var(--emoji-start));
+  display: inline-block;
+  opacity: 0;
+  line-height: 1;
+  transform: translate3d(-50%, 0, 0) scale(0.8) rotate(-10deg);
+  animation-name: fly-love;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.16, 0.78, 0.24, 1);
+  text-shadow: 0 12px 24px rgba(100, 21, 42, 0.25);
+  will-change: opacity, transform;
+}
+
+@keyframes float-heart {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fly-love {
+  0% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(0.8) rotate(-10deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(
+        calc(-50% + var(--emoji-drift)),
+        -118dvh,
+        0
+      )
+      scale(1.45) rotate(18deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .heart {
+    opacity: 0.58;
+  }
+
+  .site-flying-emoji {
+    font-size: clamp(1.65rem, 7vw, 2.5rem) !important;
+  }
+}
