@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "build:github": "NEXT_PUBLIC_BASE_PATH=/forgive-me-love next build --webpack",
+    "build:github": "NEXT_PUBLIC_BASE_PATH=/forgiveme__next-js next build --webpack",
     "preview:static": "pnpm dlx serve out",
     "start": "next start",
     "lint": "eslint"
